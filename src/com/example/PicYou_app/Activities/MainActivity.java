@@ -2,16 +2,13 @@ package com.example.PicYou_app.Activities;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.GridView;
-import android.widget.TextView;
 import com.example.PicYou_app.Helper;
 import com.example.PicYou_app.R;
 import com.olegtyshchenko.PicYouAPI.Models.Image;
-import com.olegtyshchenko.PicYouAPI.Models.Responses.*;
+import com.olegtyshchenko.PicYouAPI.Models.Responses.ImagesResponse;
 import com.olegtyshchenko.PicYouAPI.PicYouApi;
 import com.olegtyshchenko.PicYouAPI.ResponseParser;
 import org.scribe.model.Verifier;

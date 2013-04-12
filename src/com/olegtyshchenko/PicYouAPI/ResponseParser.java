@@ -1,7 +1,8 @@
 package com.olegtyshchenko.PicYouAPI;
 
-import com.olegtyshchenko.PicYouAPI.Models.Responses.*;
 import com.google.gson.Gson;
+import com.olegtyshchenko.PicYouAPI.Models.Responses.ImageResponse;
+import com.olegtyshchenko.PicYouAPI.Models.Responses.ImagesResponse;
 
 
 /**
