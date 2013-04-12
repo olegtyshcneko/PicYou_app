@@ -12,10 +12,13 @@ import java.io.InputStream;
 
 public class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
     private ImageView bmImage;
+    private int size;
 
-    public DownloadImageTask(ImageView bmImage) {
+    public DownloadImageTask(ImageView bmImage, int size) {
         this.bmImage = bmImage;
+        this.size = size;
     }
+
 
     protected Bitmap doInBackground(String... urls) {
         String urlDisplay = urls[0];
@@ -32,7 +35,7 @@ public class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
 
     protected void onPostExecute(Bitmap result) {
         bmImage.setImageBitmap(result);
-        bmImage.setLayoutParams(new GridView.LayoutParams(240,240));
+        bmImage.setLayoutParams(new GridView.LayoutParams(size, size));
         bmImage.setScaleType(ImageView.ScaleType.CENTER_CROP);
     }
 }

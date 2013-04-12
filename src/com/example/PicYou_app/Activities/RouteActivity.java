@@ -13,7 +13,8 @@ import android.widget.Toast;
 import com.example.PicYou_app.R;
 
 //Activity which will decide where to route user, checking if there is valid access token
-public class RouteActivity extends GeneralActivity implements DialogInterface.OnDismissListener {
+public class RouteActivity extends GeneralActivity
+        implements DialogInterface.OnCancelListener {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -36,8 +37,12 @@ public class RouteActivity extends GeneralActivity implements DialogInterface.On
         return super.onCreateDialog(id);
     }
 
+//    @Override
+//    public void onDismiss(DialogInterface dialogInterface) {
+//        checkConnectionAndRoute();
+//    }
     @Override
-    public void onDismiss(DialogInterface dialogInterface) {
+    public void onCancel(DialogInterface dialogInterface) {
         checkConnectionAndRoute();
     }
 
@@ -45,15 +50,15 @@ public class RouteActivity extends GeneralActivity implements DialogInterface.On
         return new AlertDialog.Builder(this)
                 .setIcon(R.drawable.ic_launcher)
                 .setTitle("No internet connection")
-                .setPositiveButton("Retry", new Dialog.OnClickListener() {
+                .setPositiveButton("Retry", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         Toast.makeText(getBaseContext(),
                                 "Retrying connection...", Toast.LENGTH_SHORT).show();
-                        showDialog(0);
+                        dialogInterface.cancel();
                     }
                 })
-                .setNegativeButton("Cancel", new Dialog.OnClickListener() {
+                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         moveTaskToBack(true);
@@ -61,7 +66,7 @@ public class RouteActivity extends GeneralActivity implements DialogInterface.On
                 })
                 .setMessage("We're sorry, but " +
                         "this application can't work without internet connection.")
-                .setOnDismissListener(this)
+                .setOnCancelListener(this)
                 .create();
     }
 
@@ -91,5 +96,6 @@ public class RouteActivity extends GeneralActivity implements DialogInterface.On
 
         return netInfo != null && netInfo.isConnectedOrConnecting();
     }
+
 
 }
